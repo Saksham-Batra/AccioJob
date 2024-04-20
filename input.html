@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Counter Using HTML</title>
+<style>
+  body {
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
+  }
+  .container {
+    text-align: center;
+    margin-top: 50px;
+  }
+  .underline {
+    text-decoration: underline;
+    color: white;
+  }
+  .error {
+    display: none;
+    color: red;
+  }
+  .btn {
+    padding: 10px 20px;
+    margin: 0 5px;
+    border: 2px solid white;
+    cursor: pointer;
+    background-color: white;
+  }
+  .clear {
+    background-color: black;
+    color: white;
+  }
+  /* Adjust button alignment */
+  .btn-group {
+    display: inline-block;
+    vertical-align: middle;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Counter Using HTML</h1>
+  <div class="count-container">
+    <p class="underline">Your Current Count is: <span id="count">0</span></p>
+    <p class="error" id="errorMsg">Error: Cannot go below 0</p>
+  </div>
+  <div class="btn-group">
+    <button class="btn increment" onclick="increment()">Increment</button>
+    <button class="btn decrement" onclick="decrement()">Decrement</button>
+    <button class="btn clear" onclick="clearCount()" id="clearBtn">Clear</button>
+  </div>
+</div>
+
+<script>
+  let count = 0;
+  const countElement = document.getElementById('count');
+  const errorMsgElement = document.getElementById('errorMsg');
+  const clearBtn = document.getElementById('clearBtn');
+
+  function increment() {
+    count++;
+    countElement.textContent = count;
+    checkCount();
+  }
+
+  function decrement() {
+    if (count === 0) {
+      showError();
+    } else {
+      count--;
+      countElement.textContent = count;
+      checkCount();
+    }
+  }
+
+  function clearCount() {
+    count = 0;
+    countElement.textContent = count;
+    checkCount();
+  }
+
+  function checkCount() {
+    if (count === 0) {
+      clearBtn.style.display = 'none';
+      showError();
+    } else {
+      clearBtn.style.display = 'inline-block';
+      hideError();
+    }
+  }
+
+  function showError() {
+    errorMsgElement.style.display = 'block';
+  }
+
+  function hideError() {
+    errorMsgElement.style.display = 'none';
+  }
+</script>
+</body>
+</html>
